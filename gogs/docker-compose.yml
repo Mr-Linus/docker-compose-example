@@ -1,0 +1,29 @@
+version: '3'
+services:
+  mysql:
+    image:  registry.cn-hangzhou.aliyuncs.com/geekcloud/mysql:lamp
+    container_name: gogs-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: GeekCloud
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - gogs
+  apache:
+    image:  gogs/gogs
+    container_name: docker-gogs
+    deploy:
+      replicas: 2
+    ports:
+      - '10080:3000'
+      - '10022:22'
+    volumes:
+      - ./data:/var/data
+    networks:
+      - gogs
+    depends_on:
+      - mysql
+     
+networks:
+    gogs:  
+
