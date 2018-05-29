@@ -1,0 +1,30 @@
+.settings {
+  background-color: white;
+  border-bottom: 1px solid #eee;
+  border-right: 1px solid #eee;
+  border-top: 1px solid #eee;
+  padding: 1em;
+  z-index: 100;
+  position: absolute;
+  top: 43px;
+  left: 10px;
+  width: 120px;
+
+  li {
+    list-style: none;
+    a {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+  > a {
+    margin: 5px;
+    display: inline-block;
+  }
+}
+
+.settings:after {
+  left: 80px;
+}

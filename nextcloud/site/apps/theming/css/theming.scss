@@ -1,0 +1,119 @@
+.nc-theming-main-background {
+	background-color: $color-primary;
+}
+
+.nc-theming-main-text {
+	color: $color-primary-text;
+}
+
+.nc-theming-contrast {
+	color: $color-primary-text;
+}
+
+/* invert header icons on bright background */
+@if (lightness($color-primary) > 50) {
+	.searchbox input[type="search"] {
+		background: transparent url('../../../core/img/actions/search.svg') no-repeat 6px center;
+	}
+	#appmenu li a img {
+		-webkit-filter: invert(1);
+		filter: invert(1);
+		filter: progid:DXImageTransform.Microsoft.BasicImage(invert='1');
+	}
+	#contactsmenu .icon-contacts {
+		background-image: url('../../../core/img/places/contacts-dark.svg');
+	}
+	#settings .icon-settings-white {
+		background-image: url('../../../core/img/actions/settings-dark.svg');
+	}
+	#appmenu .icon-more-white {
+		background-image: url('../../../core/img/actions/more.svg');
+	}
+}
+
+/* Colorized svg images */
+.icon-file, .icon-filetype-text {
+	background-image: url(./img/core/filetypes/text.svg?v=#{$theming-cachebuster});
+}
+
+.icon-folder, .icon-filetype-folder {
+	background-image: url(./img/core/filetypes/folder.svg?v=#{$theming-cachebuster});
+}
+
+.icon-filetype-folder-drag-accept {
+	background-image: url(./img/core/filetypes/folder-drag-accept.svg?v=#{$theming-cachebuster}) !important;
+}
+
+/* override styles for login screen in guest.css */
+#header .logo,
+#header .logo-icon {
+	background-image: url(#{$image-logo});
+	@if $theming-logo-mime != '' {
+		background-size: contain;
+	}
+}
+
+#body-login,
+#firstrunwizard .firstrunwizard-header,
+#theming-preview {
+	background-image: url(#{$image-login-background});
+	background-color: $color-primary;
+}
+
+input.primary {
+	background-color: nc-lighten($color-primary, .9);
+	border: 1px solid $color-primary;
+	color: $color-primary-text;
+}
+
+@if (lightness($color-primary) > 50) {
+	#body-login input.login {
+		background-image: url('../../../core/img/actions/confirm.svg');
+	}
+}
+
+// plain background color for login page
+@if $image-login-plain == 'true' {
+	#body-login, #firstrunwizard .firstrunwizard-header, #theming-preview {
+		background-image: none !important;
+		background-color: $color-primary;
+	}
+	#body-login {
+
+		a, label, p {
+			color: $color-primary-text !important;
+		}
+
+		@if (lightness($color-primary) > 50) {
+			#submit {
+				border-color: nc-darken($color-primary, 20%);
+				background-color: nc-darken($color-primary, 20%);
+			}
+			#submit:hover {
+				border-color: nc-darken($color-primary, 10%);
+				background-color: nc-darken($color-primary, 10%);
+			}
+			input[type='checkbox'].checkbox--white + label:before {
+				border-color: nc-darken($color-primary, 40%) !important;
+			}
+			input[type='checkbox'].checkbox--white:not(:disabled):not(:checked) + label:hover:before,
+			input[type='checkbox'].checkbox--white:focus + label:before {
+				border-color: nc-darken($color-primary, 30%) !important;
+			}
+			input[type='checkbox'].checkbox--white:checked + label:before {
+				border-color: nc-darken($color-primary, 30%) !important;
+				background-image: url('../../../core/img/actions/checkbox-mark.svg');
+				background-color: nc-darken($color-primary, 30%) !important;
+			}
+		} @else {
+			#submit {
+				border-color: nc-lighten($color-primary, 20%);
+				background-color: nc-lighten($color-primary, 20%);
+			}
+			#submit:hover {
+				border-color: nc-lighten($color-primary, 10%);
+				background-color: nc-lighten($color-primary, 10%);
+			}
+		}
+	}
+}

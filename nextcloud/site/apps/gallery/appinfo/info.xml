@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<info>
+	<id>gallery</id>
+	<name>Gallery</name>
+	<description>Media gallery for Nextcloud with the following features:
+
+		- Support for large selection of media types (depending on server setup)
+
+		- Upload and organise images and albums straight from the app
+
+		- Large, zoomable previews which can be shown in fullscreen mode
+
+		- Sort images by name or date
+
+		- Per album design, description and copyright statement
+
+		- A la carte features (external shares, browser svg rendering, etc.)
+
+		- Image download straight from the slideshow or the gallery
+
+		- Switch to Gallery from any folder in files and vice-versa
+
+		- Ignore folders containing a ".nomedia" file
+
+		- Browser rendering of SVG images (disabled by default)
+
+		- Native SVG support
+
+		- Mobile support
+
+		Provides a dedicated view of all images in a grid, adds image viewing capabilities to the
+		files app and adds a gallery view to public links.
+		Compatible with Firefox, Chrome and Internet Explorer 11
+	</description>
+	<licence>AGPL</licence>
+	<author>Olivier Paroz, Robin Appelman</author>
+	<version>17.0.0</version>
+	<namespace>Gallery</namespace>
+	<category>Multimedia</category>
+	<documentation>
+		<user>https://github.com/nextcloud/gallery/blob/master/README.md</user>
+		<admin>https://github.com/nextcloud/gallery/blob/master/README.md</admin>
+		<developer>https://github.com/nextcloud/gallery/wiki</developer>
+	</documentation>
+	<category>Multimedia</category>
+	<website>https://github.com/nextcloud/gallery</website>
+	<bugs>https://github.com/nextcloud/gallery/issues</bugs>
+	<repository type="git">https://github.com/nextcloud/gallery.git</repository>
+	<dependencies>
+		<php min-version="5.6" max-version="7"/>
+		<nextcloud min-version="11" max-version="12"/>
+	</dependencies>
+	<default_enable />
+	<shipped>true</shipped>
+</info>

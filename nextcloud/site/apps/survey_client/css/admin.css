@@ -1,0 +1,8 @@
+#survey_client textarea {
+	height: 150px;
+	width: 300px;
+}
+
+#survey_client button {
+    margin: 20px 0;
+}

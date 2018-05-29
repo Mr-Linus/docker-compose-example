@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<info>
+	<id>twofactor_backupcodes</id>
+	<name>Two factor backup codes</name>
+	<description>A two-factor auth backup codes provider</description>
+	<licence>agpl</licence>
+	<author>Christoph Wurst</author>
+	<version>1.1.1</version>
+	<namespace>TwoFactorBackupCodes</namespace>
+	<category>other</category>
+
+	<two-factor-providers>
+		<provider>OCA\TwoFactorBackupCodes\Provider\BackupCodesProvider</provider>
+	</two-factor-providers>
+
+	<dependencies>
+		<nextcloud min-version="12" max-version="12" />
+	</dependencies>
+
+	<activity>
+		<providers>
+			<provider>OCA\TwoFactorBackupCodes\Activity\Provider</provider>
+		</providers>
+	</activity>
+
+	<repair-steps>
+		<post-migration>
+			<step>OCA\TwoFactorBackupCodes\Migration\CopyEntriesFromOldTable</step>
+		</post-migration>
+	</repair-steps>
+</info>

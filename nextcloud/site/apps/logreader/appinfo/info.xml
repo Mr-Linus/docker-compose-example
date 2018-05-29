@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<info xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+	<id>logreader</id>
+	<name>Log Reader</name>
+	<summary>A log reader for Nextcloud</summary>
+	<description>Log reader for Nextcloud</description>
+	<version>2.0.0</version>
+	<licence>AGPL</licence>
+	<author>Robin Appelman</author>
+	<namespace>LogReader</namespace>
+	<default_enable/>
+
+	<settings>
+		<admin>OCA\LogReader\Settings\Admin</admin>
+		<admin-section>OCA\LogReader\Settings\Section</admin-section>
+	</settings>
+
+	<website>https://github.com/nextcloud/logreader</website>
+	<bugs>https://github.com/nextcloud/logreader/issues</bugs>
+	<repository type="git">https://github.com/nextcloud/logreader</repository>
+	<screenshot>
+		https://raw.githubusercontent.com/nextcloud/logreader/master/screenshots/reader.png
+	</screenshot>
+	<category>tools</category>
+	<dependencies>
+		<owncloud min-version="9.1" max-version="9.1"/>
+		<nextcloud min-version="1.0" max-version="12"/>
+	</dependencies>
+	<ocsid>170871</ocsid>
+</info>

@@ -1,0 +1,20 @@
+OC.L10N.register(
+    "survey_client",
+    {
+    "Usage survey" : "Sondaggio di utilizzo",
+    "Sent on: {on}" : "Inviato il: {on}",
+    "An error occurred while sending your report." : "Si è verificato un errore durante l'invio del resoconto.",
+    "Number of shares <em>(per type and permission setting)</em>" : "Numero di condivisioni <em>(per tipo e permessi)</em>",
+    "Not now" : "Non ora",
+    "Send usage" : "Invia utilizzo",
+    "Never" : "Mai",
+    "You can help improve Nextcloud by sending us some data about your current setup and usage." : "Puoi contribuire a migliorare Nextcloud inviando alcuni dati sulla tua configurazione attuale e sull'utilizzo.",
+    "Send new report now" : "Invia nuovo resoconto ora",
+    "Send usage survey monthly" : "Invia mensilmente il sondaggio di utilizzo",
+    "Data to send" : "Dati da inviare",
+    "Last report" : "Ultimo resoconto",
+    "Sent on: %s" : "Inviato il: %s",
+    "You can help us to improve Nextcloud be sending us some data about your current setup and usage." : "Puoi contribuire a migliorare Nextcloud inviando alcuni dati sulla tua configurazione attuale e sull'utilizzo.",
+    "You can help us to improve Nextcloud by sending us some data about your current setup and usage." : "Puoi contribuire a migliorare Nextcloud inviando alcuni dati sulla tua configurazione attuale e sull'utilizzo."
+},
+"nplurals=2; plural=(n != 1);");

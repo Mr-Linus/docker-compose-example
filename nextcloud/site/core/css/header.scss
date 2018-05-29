@@ -1,0 +1,545 @@
+/**
+ * @copyright Copyright (c) 2016, John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2016, Julius Haertl <jus@bitgrid.net>
+ * @copyright Copyright (c) 2016, Lukas Reschke <lukas@statuscode.ch>
+ * @copyright Copyright (c) 2016, Jos Poortvliet <jos@opensuse.org>
+ * @copyright Copyright (c) 2016, Erik Pellikka <erik@pellikka.org>
+ * @copyright Copyright (c) 2016, jowi <sjw@gmx.ch>
+ * @copyright Copyright (c) 2015, Hendrik Leppelsack <hendrik@leppelsack.de>
+ * @copyright Copyright (c) 2015, Volker E <volker.e@temporaer.net>
+ * @copyright Copyright (c) 2014-2017, Jan-Christoph Borchardt <hey@jancborchardt.net>
+ *
+ * @license GNU AGPL version 3 or any later version
+ *
+ */
+
+/* prevent ugly selection effect on accidental selection */
+#header,
+#navigation,
+#expanddiv {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+/* Header menu */
+.menu {
+	position: absolute;
+	top: 45px;
+	background-color: #fff;
+	box-shadow: 0 1px 10px $color-box-shadow;
+	border-radius: 0 0 3px 3px;
+	display: none;
+	box-sizing: border-box;
+	z-index: 2000;
+
+	/* Dropdown arrow */
+	&:after {
+		border: 10px solid transparent;
+		border-bottom-color: $color-main-background;
+		bottom: 100%;
+		content: ' ';
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+}
+
+/* removed until content-focusing issue is fixed */
+#skip-to-content a {
+	position: absolute;
+	left: -10000px;
+	top: auto;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	&:focus {
+		left: 76px;
+		top: -9px;
+		color: $color-primary-text;
+		width: auto;
+		height: auto;
+	}
+}
+
+/* HEADERS ------------------------------------------------------------------ */
+#body-user #header,
+#body-settings #header,
+#body-public #header {
+	display: inline-flex;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 2000;
+	height: 45px;
+	background-color: $color-primary;
+	box-sizing: border-box;
+	justify-content: space-between;
+}
+
+/* LOGO and APP NAME -------------------------------------------------------- */
+#nextcloud {
+	padding: 5px;
+	padding-bottom: 0;
+	height: 45px;
+	/* header height */
+	box-sizing: border-box;
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+	opacity: 1;
+	&:focus {
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=75)';
+		opacity: .75;
+	}
+	&:hover, &:active {
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+		opacity: 1;
+	}
+}
+
+#header {
+	.logo {
+		background-image: url('#{$image-logo}');
+		background-repeat: no-repeat;
+		background-size: 175px;
+		background-position: center;
+		width: 252px;
+		height: 120px;
+		margin: 0 auto;
+
+		img {
+			opacity: 0;
+			max-width: 100%;
+			max-height: 200px;
+		}
+	}
+	.logo-icon {
+		/* display logo so appname can be shown next to it */
+		display: inline-block;
+		background-image: url($image-logo);
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: contain;
+		width: 62px;
+		height: 34px;
+	}
+	.header-appname-container {
+		display: none;
+		padding-top: 22px;
+		padding-right: 10px;
+		flex-shrink: 0;
+	}
+	/* show caret indicator next to logo to make clear it is tappable */
+	.icon-caret {
+		display: inline-block;
+		width: 12px;
+		height: 12px;
+		margin: 0;
+		margin-top: -21px;
+		padding: 0;
+		vertical-align: middle;
+	}
+
+	#header-left,
+	#header-right {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	#header-left {
+		flex: 0 0;
+		flex-grow: 1;
+	}
+
+	#header-right {
+		justify-content: flex-end;
+	}
+}
+
+/* hover effect for app switcher label */
+
+.header-appname-container .header-appname {
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=75)';
+	opacity: .75;
+}
+
+.menutoggle {
+	.icon-caret {
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=75)';
+		opacity: .75;
+	}
+	&:hover {
+		.header-appname, .icon-caret {
+			-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+			opacity: 1;
+		}
+	}
+	&:focus {
+		.header-appname, .icon-caret {
+			-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+			opacity: 1;
+		}
+	}
+	&.active {
+		.header-appname, .icon-caret {
+			-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+			opacity: 1;
+		}
+	}
+}
+
+/* show appname next to logo */
+.header-appname {
+	display: inline-block;
+	position: relative;
+	color: $color-primary-text;
+	font-size: 16px;
+	font-weight: 300;
+	margin: 0;
+	margin-top: -26px;
+	padding: 7px 0 7px 5px;
+	vertical-align: middle;
+}
+
+/* do not show menu toggle on public share links as there is no menu */
+#body-public #header .icon-caret {
+	display: none;
+}
+
+/* NAVIGATION --------------------------------------------------------------- */
+nav {
+	display: inline-block;
+	width: 44px;
+	height: 44px;
+	margin-left: -54px;
+}
+
+#navigation {
+	position: relative;
+	left: -100%;
+	width: 160px;
+	background-color: $color-main-background;
+	box-shadow: 0 1px 10px $color-box-shadow;
+	&:after {
+		/* position of dropdown arrow */
+		left: 47%;
+		bottom: 100%;
+		border: solid transparent;
+		content: ' ';
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border-color: rgba(0, 0, 0, 0);
+		border-bottom-color: rgba(255, 255, 255, .97);
+		border-width: 9px;
+		margin-left: -9px;
+	}
+}
+
+/* arrow look */
+
+#expanddiv:after {
+	bottom: 100%;
+	border: solid transparent;
+	content: ' ';
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(0, 0, 0, 0);
+	border-bottom-color: rgba(255, 255, 255, .97);
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+#navigation {
+	box-sizing: border-box;
+	* {
+		box-sizing: border-box;
+	}
+	li {
+		display: inline-block;
+	}
+	a {
+		position: relative;
+		display: block;
+		padding: 10px 12px;
+		height:40px;
+		vertical-align: text-bottom;
+		span {
+			display: inline-block;
+			padding-bottom: 0;
+			padding-left: 10px;
+			color: $color-main-text;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 110px;
+		}
+		svg,
+		span {
+			-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';
+			opacity: .5;
+		}
+		svg {
+			margin-bottom: 2px;
+		}
+		&:hover svg,
+		&:focus svg,
+		&:hover span,
+		&:focus span {
+			-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+			opacity: 1;
+		}
+		&.active {
+			svg, span {
+				-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+				opacity: 1;
+			}
+		}
+	}
+	.app-icon {
+		margin: 0 auto;
+		padding: 0;
+		max-height: 32px;
+		max-width: 32px;
+	}
+
+}
+
+/* loading feedback for apps */
+.app-loading {
+	.icon-loading-small-dark {
+		display: inline !important;
+		position: absolute;
+		left: 12px;
+		width: 16px;
+		height: 16px;
+	}
+	.app-icon {
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
+		opacity: 0;
+	}
+}
+
+/* Apps management */
+
+#apps {
+	max-height: calc(100vh - 100px);
+	overflow: auto;
+	.in-header {
+		display: none;
+	}
+}
+
+/* USER MENU -----------------------------------------------------------------*/
+
+#settings {
+	display: inline-block;
+	color: rgba($color-primary-text, 0.7);
+	cursor: pointer;
+	.icon-loading-small-dark {
+		display: inline-block;
+		margin-bottom: -3px;
+		margin-right: 6px;
+		background-size: 16px 16px;
+	}
+	flex: 0 0 auto;
+}
+
+/* User menu on the right */
+#expand {
+	position: relative;
+	display: flex;
+	align-items: center;
+	padding: 7px 20px 6px 10px;
+	cursor: pointer;
+	* {
+		cursor: pointer;
+	}
+	img {
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=70)';
+		opacity: .7;
+		margin-bottom: -2px;
+	}
+	&:hover,
+	&:focus,
+	&:active {
+		color: $color-primary-text;
+		img,
+		#expandDisplayName {
+			-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+			opacity: 1;
+		}
+	}
+
+	/* Profile picture in header */
+	.avatardiv {
+		cursor: pointer;
+		height: 32px;
+		width: 32px;
+		img {
+			opacity: 1;
+			cursor: pointer;
+		}
+		/* do not show display name when profile picture is present */
+		&.avatardiv-shown + #expandDisplayName {
+			display: none;
+		}
+	}
+
+	#expandDisplayName {
+		padding: 8px;
+		opacity: .6;
+	}
+}
+
+/* full opacity for gear icon if active */
+#body-settings #expandDisplayName {
+	opacity: 1;
+}
+
+/* show triangle below user menu if active */
+#body-settings #expand:before {
+	content: ' ';
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border: 0 solid transparent;
+	border-bottom-color: white;
+	border-width: 10px;
+	transform: translateX(-50%);
+	left: 26px;
+	bottom: 0;
+	z-index: 100;
+	display: block;
+}
+
+#expanddiv {
+	right: 13px;
+	background: $color-main-background;
+	box-shadow: 0 1px 10px $color-box-shadow;
+	&:after {
+		/* position of dropdown arrow */
+		right: 13px;
+	}
+	a {
+		display: block;
+		height: 40px;
+		color: $color-main-text;
+		opacity: .5;
+		padding: 10px 12px 0;
+		-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=50)';
+		box-sizing: border-box;
+		img {
+			margin-bottom: -3px;
+			margin-right: 6px;
+		}
+		&:hover,
+		&:focus,
+		&:active,
+		&.active {
+			-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=100)';
+			opacity: 1;
+		}
+	}
+}
+
+#appmenu {
+	display: inline-block;
+	width: auto;
+	clear: both;
+	height: 44px;
+
+	li {
+		float: left;
+		display: inline-block;
+		position: relative;
+		vertical-align: top !important;
+		height: 45px;
+		cursor: pointer;
+
+		a {
+			position: relative;
+			display: inline-block;
+			margin: 0;
+			padding: 12px;
+			height: 21px;
+			text-align: center;
+			vertical-align: top !important;
+			opacity: .6;
+		}
+	}
+	.app-loading .icon-loading-small-dark {
+		top:12px;
+	}
+
+
+	li:hover a,
+	li a.active {
+		opacity: 1;
+	}
+
+	li img,
+	.icon-more-white {
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+	}
+
+	li span {
+		display: none;
+		position: absolute;
+		overflow: visible;
+		background-color: rgba(255, 255, 255, .97);
+		white-space: nowrap;
+		border: none;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		margin-top: 0;
+		color: rgba(0, 0, 0, .6);
+		width: auto;
+		left: 50%;
+		top: 45px;
+		transform: translateX(-50%);
+		padding: 4px 10px;
+		box-shadow: 0 1px 10px $color-box-shadow;
+	}
+
+	li:hover span {
+		display: inline-block;
+	}
+
+	/* show triangle below active app */
+	li:hover a:before,
+	li a.active:before {
+		content: ' ';
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+		border: 0 solid transparent;
+		border-bottom-color: white;
+		border-width: 10px;
+		transform: translateX(-50%);
+		left: 50%;
+		bottom: 0;
+		z-index: 100;
+		display: block;
+	}
+	&.menu-open li:hover a:before,
+	&.menu-open li a.active:before,
+	&.menu-open li:hover span {
+		display: none !important;
+	}
+
+	li.hidden {
+		display: none;
+	}
+}

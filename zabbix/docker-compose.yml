@@ -1,0 +1,47 @@
+version: '3'
+services:
+  mysql:
+    image:  registry.cn-hangzhou.aliyuncs.com/geekcloud/mysql:lamp
+    container_name: zabbix-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: GeekCloud
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - zabbix
+  zabbix:
+    image:  zabbix/zabbix-server-mysql:alpine-3.0-latest
+    container_name: zabbix-server
+    deploy:
+      replicas: 2
+    ports:
+      - '10051:10051'
+    environment:
+      DB_SERVER_HOST: zabbix-mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: GeekCloud
+    networks:
+      - zabbix
+    depends_on:
+      - mysql
+  web:
+    image: zabbix/zabbix-web-apache-mysql:alpine-3.0-latest
+    container_name: zabbix-web
+    environment:
+      DB_SERVER_HOST: zabbix-mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: GeekCloud
+      ZBX_SERVER_HOST: zabbix-server
+      ZBX_SERVER_PORT: 10051
+      PHP_TZ: Asia/Shanghai
+    ports:
+      - '20080:80'
+      - '20443:443'
+    networks:
+      - zabbix
+    depends_on:
+      - mysql
+      - zabbix
+networks:
+    zabbix:  
+

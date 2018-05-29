@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Retention of Files &mdash; Nextcloud 12 Server Administration Manual 12 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/main.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Nextcloud 12 Server Administration Manual 12 documentation" href="../contents.html" />
+    <link rel="up" title="File Workflows" href="index.html" />
+    <link rel="next" title="Database Configuration" href="../configuration_database/index.html" />
+    <link rel="prev" title="Automated Tagging of Files" href="automated_tagging.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1d2d44">
+
+  </head>
+  <body role="document">
+
+
+<div class="wrap container not-front">
+  <div class="content row">
+  <main class="main">
+    <div class="row page-content-header">
+      <div class="col-md-5 col-md-offset-7">
+      
+        <form class="headersearch" style="margin-bottom:-3px;" action="../search.html" method="get">
+        <input type="text" value="" name="q" id="q" class="form-control" /> 
+        <button  class="btn btn-default" type="submit" id="searchsubmit">Search</button>
+        </form>
+      
+      </div>
+    </div>
+    
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sidebar">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										
+<li><a href="../contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_server/index.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_user/index.html">User Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_files/index.html">File Sharing and Management</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">File Workflows</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">Files Access Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automated_tagging.html">Automated Tagging of Files</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Retention of Files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sample">Sample</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#common-misconfigurations">Common misconfigurations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_database/index.html">Database Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_mimetypes/index.html">Mimetypes Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issues/index.html">Issues and Troubleshooting</a></li>
+</ul>
+
+								</ul>
+							</div>
+					</div>
+				</div>
+        
+
+				<div class="col-md-9">
+					<div class="page-content">
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="automated_tagging.html" title="Previous Chapter: Automated Tagging of Files"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Automated Tag...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="../configuration_database/index.html" title="Next Chapter: Database Configuration"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Database Conf... &raquo;</span>
+    </a>
+  </li>
+</ul>
+						
+  <div class="section" id="retention-of-files">
+<h1>Retention of Files<a class="headerlink" href="#retention-of-files" title="Permalink to this headline">¶</a></h1>
+<p>Nextcloud&#8217;s Files Retention app allows to automatically delete files that
+are tagged with a collaborative tag and have a certain age.</p>
+<div class="section" id="sample">
+<h2>Sample<a class="headerlink" href="#sample" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><div class="figure">
+<img alt="Sample rule to delete files after 14 days." src="../_images/retention_sample.png" />
+</div>
+</div></blockquote>
+<p>The rule from the sample will delete all files tagged with <code class="docutils literal"><span class="pre">Temporary</span> <span class="pre">file</span></code> after 14 days.</p>
+</div>
+<div class="section" id="common-misconfigurations">
+<h2>Common misconfigurations<a class="headerlink" href="#common-misconfigurations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="public-collaborative-tag">
+<h3>Public collaborative tag<a class="headerlink" href="#public-collaborative-tag" title="Permalink to this headline">¶</a></h3>
+<p>Similar to <a class="reference internal" href="access_control.html"><em>Files Access Control</em></a> retention should use <code class="docutils literal"><span class="pre">restricted</span></code> or <code class="docutils literal"><span class="pre">invisible</span></code>
+tags. Otherwise any user can remove the tag and the file is not removed after the given
+period. Use <a class="reference internal" href="automated_tagging.html"><em>Automated Tagging of Files</em></a> to assign such tags to newly uploaded files.</p>
+</div>
+<div class="section" id="file-age">
+<h3>File age<a class="headerlink" href="#file-age" title="Permalink to this headline">¶</a></h3>
+<p>Currently retention is based on the creation date of the file. The sync client sends
+the <strong>original</strong> creation date to the server, while uploading through the web interface
+will create a new file with a <strong>new</strong> creation date.
+We hope to be able to add a <code class="docutils literal"><span class="pre">upload</span> <span class="pre">date</span></code> to the filesystem soon, which would make more
+sense. Until then this potentially unexpected behaviour has to be taken into account.</p>
+</div>
+</div>
+</div>
+
+
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="automated_tagging.html" title="Previous Chapter: Automated Tagging of Files"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Automated Tag...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="../configuration_database/index.html" title="Next Chapter: Database Configuration"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Database Conf... &raquo;</span>
+    </a>
+  </li>
+</ul>
+					</div>
+				</div>
+			</div>
+  </main>  
+  </div>
+</div>
+  </body>
+</html>

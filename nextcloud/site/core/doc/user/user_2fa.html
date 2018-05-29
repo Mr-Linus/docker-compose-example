@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using two-factor authentication &mdash; Nextcloud 12 User Manual 12 documentation</title>
+    
+    <link rel="stylesheet" href="_static/" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/main.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Nextcloud 12 User Manual 12 documentation" href="contents.html" />
+    <link rel="next" title="Manage Connected Browsers and Devices" href="session_management.html" />
+    <link rel="prev" title="Setting Your Preferences" href="userpreferences.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1d2d44">
+
+  </head>
+  <body role="document">
+
+
+<div class="wrap container not-front">
+  <div class="content row">
+  <main class="main">
+    <div class="row page-content-header">
+      <div class="col-md-5 col-md-offset-7">
+      
+        <form class="headersearch" style="margin-bottom:-3px;" action="search.html" method="get">
+        <input type="text" value="" name="q" id="q" class="form-control" /> 
+        <button  class="btn btn-default" type="submit" id="searchsubmit">Search</button>
+        </form>
+      
+      </div>
+    </div>
+    
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sidebar">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										
+<li><a href="contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">Nextcloud 12 User Manual Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What&#8217;s New for Users in Nextcloud 12</a></li>
+<li class="toctree-l1"><a class="reference internal" href="webinterface.html">The Nextcloud Web Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="files/index.html">Files &amp; Synchronization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pim/index.html">Contacts &amp; Calendar</a></li>
+<li class="toctree-l1"><a class="reference internal" href="userpreferences.html">Setting Your Preferences</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Using two-factor authentication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-two-factor-authentication">Configuring two-factor authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recovery-codes-in-case-you-lost-your-2nd-factor">Recovery codes in case you lost your 2nd factor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logging-in-with-two-factor-authentication">Logging in with two-factor authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-client-applications-with-two-factor-authentication">Using client applications with two-factor authentication</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="session_management.html">Manage Connected Browsers and Devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="external_storage/index.html">External Storage</a></li>
+</ul>
+
+								</ul>
+							</div>
+					</div>
+				</div>
+        
+
+				<div class="col-md-9">
+					<div class="page-content">
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="userpreferences.html" title="Previous Chapter: Setting Your Preferences"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Setting Your ...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="session_management.html" title="Next Chapter: Manage Connected Browsers and Devices"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Manage Connec... &raquo;</span>
+    </a>
+  </li>
+</ul>
+						
+  <div class="section" id="using-two-factor-authentication">
+<h1>Using two-factor authentication<a class="headerlink" href="#using-two-factor-authentication" title="Permalink to this headline">¶</a></h1>
+<p>Two-factor authentication (2FA) is a way to protect your Nextcloud account
+against unauthorized access. It works by requiring two different &#8216;proofs&#8217; of
+your identity. For example, <em>something you know</em> (like a password) and
+<em>something you have</em> like a physical key. Typically, the first factor is a
+password like you already have and the second can be a text message you
+receive or a code you generate on your phone or another device
+(<em>something you have</em>). Nextcloud supports a variety of 2nd factors and
+more can be added.</p>
+<p>Once a two-factor authentication app has been enabled by your administrator
+you can enable and configure it in <a class="reference internal" href="userpreferences.html"><em>Setting Your Preferences</em></a>. Below you can
+see how.</p>
+<div class="section" id="configuring-two-factor-authentication">
+<h2>Configuring two-factor authentication<a class="headerlink" href="#configuring-two-factor-authentication" title="Permalink to this headline">¶</a></h2>
+<p>In your Personal Settings look up the Second-factor Auth setting. In this
+example this is TOTP, a Google Authenticator compatible time based code.</p>
+<div class="figure">
+<img alt="TOTP configuration." src="_images/totp_enable.png" />
+</div>
+<p>You will see your secret and a QR code which can be scanned by the TOTP app
+on your phone (or another device). Depending on the app or tool, type in the
+code or scan the QR and your device will show a login code which changes
+every 30 seconds.</p>
+</div>
+<div class="section" id="recovery-codes-in-case-you-lost-your-2nd-factor">
+<h2>Recovery codes in case you lost your 2nd factor<a class="headerlink" href="#recovery-codes-in-case-you-lost-your-2nd-factor" title="Permalink to this headline">¶</a></h2>
+<p>You should always generate backup codes for 2FA. If your 2nd factor device
+gets stolen or is not working, you will be able to use one of these codes to
+unlock your account. It effectively functions as a backup 2nd factor. To
+get the backup codes, go to your Personal Settings and look under Second-factor
+Auth settings. Choose <em>Generate backup codes</em>.</p>
+<div class="figure">
+<img alt="2FA backup code generator" src="_images/2fa_backupcode_1.png" />
+</div>
+<p>You will then be presented with a list of one-time-use backup codes.</p>
+<div class="figure">
+<img alt="2FA backup codes" src="_images/2fa_backupcode_2.png" />
+</div>
+<p>You should put these codes in a safe spot, somewhere you can find them. Don&#8217;t
+put them together with your 2nd factor like your mobile phone but make sure that
+if you lose one, you still have the other. Keeping them at home is probably
+the best thing to do.</p>
+</div>
+<div class="section" id="logging-in-with-two-factor-authentication">
+<h2>Logging in with two-factor authentication<a class="headerlink" href="#logging-in-with-two-factor-authentication" title="Permalink to this headline">¶</a></h2>
+<p>After you have logged out and need to log in again, you will see a request to
+enter the TOTP code in your browser. Just enter your code:</p>
+<div class="figure">
+<img alt="Entering TOTP code at login." src="_images/totp_login_2.png" />
+</div>
+<p>If the code was correct you will be redirected to your Nextcloud account.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Since the code is time-based, it’s important that your server’s and
+your smartphone’s clock are almost in sync. A time drift of a few seconds
+won’t be a problem.</p>
+</div>
+</div>
+<div class="section" id="using-client-applications-with-two-factor-authentication">
+<h2>Using client applications with two-factor authentication<a class="headerlink" href="#using-client-applications-with-two-factor-authentication" title="Permalink to this headline">¶</a></h2>
+<p>Once you have enabled 2FA, your clients will no longer be able to connect with
+just your password unless they also have support for two-factor authentication.
+To solve this, you should generate device specific passwords for them. See
+<a class="reference internal" href="session_management.html"><em>Manage Connected Browsers and Devices</em></a> for more information on how to do this.</p>
+</div>
+</div>
+
+
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="userpreferences.html" title="Previous Chapter: Setting Your Preferences"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Setting Your ...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="session_management.html" title="Next Chapter: Manage Connected Browsers and Devices"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Manage Connec... &raquo;</span>
+    </a>
+  </li>
+</ul>
+					</div>
+				</div>
+			</div>
+  </main>  
+  </div>
+</div>
+  </body>
+</html>

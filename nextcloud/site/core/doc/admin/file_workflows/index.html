@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>File Workflows &mdash; Nextcloud 12 Server Administration Manual 12 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/main.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Nextcloud 12 Server Administration Manual 12 documentation" href="../contents.html" />
+    <link rel="next" title="Files Access Control" href="access_control.html" />
+    <link rel="prev" title="Controlling File Versions and Aging" href="../configuration_files/file_versioning.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1d2d44">
+
+  </head>
+  <body role="document">
+
+
+<div class="wrap container not-front">
+  <div class="content row">
+  <main class="main">
+    <div class="row page-content-header">
+      <div class="col-md-5 col-md-offset-7">
+      
+        <form class="headersearch" style="margin-bottom:-3px;" action="../search.html" method="get">
+        <input type="text" value="" name="q" id="q" class="form-control" /> 
+        <button  class="btn btn-default" type="submit" id="searchsubmit">Search</button>
+        </form>
+      
+      </div>
+    </div>
+    
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sidebar">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										
+<li><a href="../contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_server/index.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_user/index.html">User Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_files/index.html">File Sharing and Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">File Workflows</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html">Files Access Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automated_tagging.html">Automated Tagging of Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retention.html">Retention of Files</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_database/index.html">Database Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_mimetypes/index.html">Mimetypes Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issues/index.html">Issues and Troubleshooting</a></li>
+</ul>
+
+								</ul>
+							</div>
+					</div>
+				</div>
+        
+
+				<div class="col-md-9">
+					<div class="page-content">
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="../configuration_files/file_versioning.html" title="Previous Chapter: Controlling File Versions and Aging"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Controlling F...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="access_control.html" title="Next Chapter: Files Access Control"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Files Access ... &raquo;</span>
+    </a>
+  </li>
+</ul>
+						
+  <div class="section" id="file-workflows">
+<h1>File Workflows<a class="headerlink" href="#file-workflows" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="access_control.html">Files Access Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html#denied-access">Denied access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html#denying-access-to-folders">Denying access to folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html#prevent-uploading-of-specific-files">Prevent uploading of specific files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html#common-misconfigurations">Common misconfigurations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="access_control.html#available-rules">Available rules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="automated_tagging.html">Automated Tagging of Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="automated_tagging.html#assigning-restricted-and-invisible-tags">Assigning restricted and invisible tags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="automated_tagging.html#available-rules">Available rules</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="retention.html">Retention of Files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="retention.html#sample">Sample</a></li>
+<li class="toctree-l2"><a class="reference internal" href="retention.html#common-misconfigurations">Common misconfigurations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="../configuration_files/file_versioning.html" title="Previous Chapter: Controlling File Versions and Aging"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Controlling F...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="access_control.html" title="Next Chapter: Files Access Control"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Files Access ... &raquo;</span>
+    </a>
+  </li>
+</ul>
+					</div>
+				</div>
+			</div>
+  </main>  
+  </div>
+</div>
+  </body>
+</html>

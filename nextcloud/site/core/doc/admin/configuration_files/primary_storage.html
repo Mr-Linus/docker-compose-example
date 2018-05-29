@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Primary Storage &mdash; Nextcloud 12 Server Administration Manual 12 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/main.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Nextcloud 12 Server Administration Manual 12 documentation" href="../contents.html" />
+    <link rel="up" title="File Sharing and Management" href="index.html" />
+    <link rel="next" title="Encryption Configuration" href="encryption_configuration.html" />
+    <link rel="prev" title="External Storage Authentication mechanisms" href="external_storage/auth_mechanisms.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1d2d44">
+
+  </head>
+  <body role="document">
+
+
+<div class="wrap container not-front">
+  <div class="content row">
+  <main class="main">
+    <div class="row page-content-header">
+      <div class="col-md-5 col-md-offset-7">
+      
+        <form class="headersearch" style="margin-bottom:-3px;" action="../search.html" method="get">
+        <input type="text" value="" name="q" id="q" class="form-control" /> 
+        <button  class="btn btn-default" type="submit" id="searchsubmit">Search</button>
+        </form>
+      
+      </div>
+    </div>
+    
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sidebar">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										
+<li><a href="../contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_server/index.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_user/index.html">User Management</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">File Sharing and Management</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="file_sharing_configuration.html">File Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="federated_cloud_sharing_configuration.html">Configuring Federation Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="big_file_upload_configuration.html">Uploading big files &gt; 512MB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="default_files_configuration.html">Providing Default Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_storage_configuration_gui.html">Configuring External Storage (GUI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_storage_configuration.html">Configuring External Storage (Configuration File)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external_storage/auth_mechanisms.html">External Storage Authentication mechanisms</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Primary Storage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#implications">Implications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring">Configuring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#amazon-s3">Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multibucket-object-store">Multibucket Object Store</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="encryption_configuration.html">Encryption Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="files_locking_transactional.html">Transactional File Locking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="previews_configuration.html">Previews Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_versioning.html">Controlling File Versions and Aging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file_workflows/index.html">File Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_database/index.html">Database Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_mimetypes/index.html">Mimetypes Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issues/index.html">Issues and Troubleshooting</a></li>
+</ul>
+
+								</ul>
+							</div>
+					</div>
+				</div>
+        
+
+				<div class="col-md-9">
+					<div class="page-content">
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="external_storage/auth_mechanisms.html" title="Previous Chapter: External Storage Authentication mechanisms"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; External Stor...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="encryption_configuration.html" title="Next Chapter: Encryption Configuration"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Encryption Co... &raquo;</span>
+    </a>
+  </li>
+</ul>
+						
+  <div class="section" id="primary-storage">
+<h1>Primary Storage<a class="headerlink" href="#primary-storage" title="Permalink to this headline">¶</a></h1>
+<p>It&#8217;s possible to use an object store as primary storage, this replaces the default
+way of storing files in <code class="code docutils literal"><span class="pre">nextcloud/data</span></code> (note that the data directory might still be used
+for other reasons)</p>
+<div class="section" id="implications">
+<h2>Implications<a class="headerlink" href="#implications" title="Permalink to this headline">¶</a></h2>
+<p>When using an object store as primary storage, Nextcloud assumes exclusive access
+over the bucket being used.</p>
+<p>Contrary to using an object store as external storage, when an object store is used
+as primary storage, no metadata (names, directory structures, etc) is stored in the
+object store. The metadata is only stored in the database and the object store only
+holds the file content by unique identifier.</p>
+<p>Because of this primary object stores usually perform better than when using the same
+object store as external storage but it restricts being able to access the files from
+outside of Nextcloud.</p>
+</div>
+<div class="section" id="configuring">
+<h2>Configuring<a class="headerlink" href="#configuring" title="Permalink to this headline">¶</a></h2>
+<p>Primary object stores need to be configured in <code class="code docutils literal"><span class="pre">config.php</span></code> by specifying the objectstore
+backend and any backend specific configuration.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Configuring a primary object store on an existing Nextcloud instance will
+make all existing files on the instance inaccessible.</p>
+</div>
+<p>The configuration has the following structure.</p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;objectstore&#39; =&gt; array(
+        &#39;class&#39; =&gt; &#39;Object\\Storage\\Backend\\Class&#39;,
+        &#39;arguments&#39; =&gt; array(
+                ...
+        ),
+),
+</pre></div>
+</div>
+<div class="section" id="openstack-swift">
+<h3>Openstack Swift<a class="headerlink" href="#openstack-swift" title="Permalink to this headline">¶</a></h3>
+<p>The Swift backend mounts a container on an OpenStack Object Storage server into the virtual filesystem. The class to be used is <code class="code docutils literal"><span class="pre">\\OC\\Files\\ObjectStore\\Swift</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;objectstore&#39; =&gt; array(
+        &#39;class&#39; =&gt; &#39;OC\\Files\\ObjectStore\\Swift&#39;,
+        &#39;arguments&#39; =&gt; array(
+                &#39;username&#39; =&gt; &#39;username&#39;,
+                &#39;password&#39; =&gt; &#39;Secr3tPaSSWoRdt7&#39;,
+                // the container to store the data in
+                &#39;bucket&#39; =&gt; &#39;nextcloud&#39;,
+                &#39;autocreate&#39; =&gt; true,
+                &#39;region&#39; =&gt; &#39;RegionOne&#39;,
+                // The Identity / Keystone endpoint
+                &#39;url&#39; =&gt; &#39;http://example.com/v2.0&#39;,
+                // optional on some swift implementations
+                &#39;tenantName&#39; =&gt; &#39;username&#39;,
+                &#39;serviceName&#39; =&gt; &#39;swift&#39;,
+                // The Interface / url Type, optional
+                &#39;urlType&#39; =&gt; &#39;internal&#39;
+        ),
+),
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="amazon-s3">
+<h2>Amazon S3<a class="headerlink" href="#amazon-s3" title="Permalink to this headline">¶</a></h2>
+<p>The S3 backend mounts a bucket on an Amazon S3 Storage or compatible server into the virtual filesystem. The class to be used is <code class="code docutils literal"><span class="pre">\\OC\\Files\\ObjectStore\\S3</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;objectstore&#39; =&gt; array(
+        &#39;class&#39; =&gt; &#39;OC\\Files\\ObjectStore\\S3&#39;,
+        &#39;arguments&#39; =&gt; array(
+                &#39;bucket&#39; =&gt; &#39;nextcloud&#39;,
+                &#39;autocreate&#39; =&gt; true,
+                &#39;key&#39;    =&gt; &#39;EJ39ITYZEUH5BGWDRUFY&#39;,
+                &#39;secret&#39; =&gt; &#39;M5MrXTRjkyMaxXPe2FRXMTfTfbKEnZCu+7uRTVSj&#39;,
+                &#39;hostname&#39; =&gt; &#39;example.com&#39;,
+                &#39;port&#39; =&gt; 1234,
+                &#39;use_ssl&#39; =&gt; true,
+                &#39;region&#39; =&gt; &#39;optional&#39;,
+                // required for some non amazon s3 implementations
+                &#39;use_path_style&#39;=&gt;true
+        ),
+),
+</pre></div>
+</div>
+<p>Not all configuration options are required for all S3 servers.
+Overriding the hostname, port and region of your S3 server is only
+required for non-Amazon servers such as Ceph Object Gateway, which in turn
+usually don&#8217;t require the region to be set.</p>
+<p><code class="code docutils literal"><span class="pre">use_path_style</span></code> is usually not required (and is, in fact, incompatible with newer Amazon datacenters),
+but can be used with non-Amazon servers where the DNS infrastructure cannot be controlled. Ordinarily,
+requests will be made with <a class="reference external" href="http://bucket.hostname.domain/">http://bucket.hostname.domain/</a>, but with path style enabled,
+requests are made with <a class="reference external" href="http://hostname.domain/bucket">http://hostname.domain/bucket</a> instead.</p>
+</div>
+<div class="section" id="multibucket-object-store">
+<h2>Multibucket Object Store<a class="headerlink" href="#multibucket-object-store" title="Permalink to this headline">¶</a></h2>
+<p>It&#8217;s possible to configure Nextcloud to distribute it&#8217;s data over multiple buckets for scalability purpose.</p>
+<p>To setup multiple buckets, <code class="code docutils literal"><span class="pre">config.php</span></code> needs to be configured using <code class="code docutils literal"><span class="pre">'objectstore_multibucket'</span></code></p>
+<div class="highlight-python"><div class="highlight"><pre>&#39;objectstore_multibucket&#39; =&gt; array(
+        &#39;class&#39; =&gt; &#39;Object\\Storage\\Backend\\Class&#39;,
+        &#39;arguments&#39; =&gt; array(
+                // optional, defaults to 64
+                &#39;num_buckets&#39; =&gt; 64,
+                // will be prefixed by an integer in the range from 0 to (num_nuckets-1)
+                &#39;bucket&#39; =&gt; &#39;nextcloud_&#39;,
+                ...
+        ),
+),
+</pre></div>
+</div>
+<p>Nextcloud will map every user to a range of buckets and save all files for that user in it&#8217;s respective bucket.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Changing the number of buckets for an existing Nextcloud instance is supported but the
+mapping from users to buckets is persistent so only newly created users will be mapped to the
+updated range of buckets.</p>
+</div>
+</div>
+</div>
+
+
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="external_storage/auth_mechanisms.html" title="Previous Chapter: External Storage Authentication mechanisms"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; External Stor...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="encryption_configuration.html" title="Next Chapter: Encryption Configuration"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Encryption Co... &raquo;</span>
+    </a>
+  </li>
+</ul>
+					</div>
+				</div>
+			</div>
+  </main>  
+  </div>
+</div>
+  </body>
+</html>

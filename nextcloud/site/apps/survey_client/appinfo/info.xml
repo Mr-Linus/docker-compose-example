@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<info>
+    <id>survey_client</id>
+    <name>Usage survey</name>
+    <description>
+        Sends anonymized data to Nextcloud to help us to improve Nextcloud. You
+        always have full control over the content sent to Nextcloud and can disable
+        it again at any time.
+    </description>
+    <namespace>Survey_Client</namespace>
+    <licence>AGPL</licence>
+    <author>Joas Schilling, Björn Schiessle</author>
+    <version>1.0.0</version>
+    <category>other</category>
+    <dependencies>
+        <nextcloud min-version="12" max-version="12" />
+    </dependencies>
+    <default_enable/>
+    <settings>
+        <admin>\OCA\Survey_Client\Settings\AdminSettings</admin>
+        <admin-section>\OCA\Survey_Client\Settings\AdminSection</admin-section>
+    </settings>
+</info>

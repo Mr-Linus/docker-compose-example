@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<info>
+	<id>password_policy</id>
+	<name>Password policy</name>
+	<namespace>Password_Policy</namespace>
+	<description>
+		Allow admin to define certain pre-conditions for password, e.g. enforce a minimum length
+	</description>
+	<licence>AGPL</licence>
+	<author>Bjoern Schiessle</author>
+	<version>1.2.2</version>
+	<dependencies>
+		<nextcloud min-version="12" max-version="12" />
+	</dependencies>
+	<default_enable/>
+
+	<settings>
+		<admin>OCA\Password_Policy\Settings</admin>
+	</settings>
+</info>

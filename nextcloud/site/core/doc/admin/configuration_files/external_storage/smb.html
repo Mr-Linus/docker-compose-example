@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>SMB/CIFS &mdash; Nextcloud 12 Server Administration Manual 12 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/main.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/styles.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Nextcloud 12 Server Administration Manual 12 documentation" href="../../contents.html" />
+    <link rel="up" title="Configuring External Storage (GUI)" href="../external_storage_configuration_gui.html" />
+    <link rel="next" title="WebDAV" href="webdav.html" />
+    <link rel="prev" title="SFTP" href="sftp.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1d2d44">
+
+  </head>
+  <body role="document">
+
+
+<div class="wrap container not-front">
+  <div class="content row">
+  <main class="main">
+    <div class="row page-content-header">
+      <div class="col-md-5 col-md-offset-7">
+      
+        <form class="headersearch" style="margin-bottom:-3px;" action="../../search.html" method="get">
+        <input type="text" value="" name="q" id="q" class="form-control" /> 
+        <button  class="btn btn-default" type="submit" id="searchsubmit">Search</button>
+        </form>
+      
+      </div>
+    </div>
+    
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sidebar">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										
+<li><a href="../../contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_server/index.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_user/index.html">User Management</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">File Sharing and Management</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../file_sharing_configuration.html">File Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../federated_cloud_sharing_configuration.html">Configuring Federation Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../big_file_upload_configuration.html">Uploading big files &gt; 512MB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../default_files_configuration.html">Providing Default Files</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../external_storage_configuration_gui.html">Configuring External Storage (GUI)</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../external_storage_configuration_gui.html#enabling-external-storage-support">Enabling External Storage Support</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../external_storage_configuration_gui.html#storage-configuration">Storage Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../external_storage_configuration_gui.html#user-and-group-permissions">User and Group Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../external_storage_configuration_gui.html#mount-options">Mount Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../external_storage_configuration_gui.html#using-self-signed-certificates">Using Self-Signed Certificates</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../external_storage_configuration_gui.html#available-storage-backends">Available storage backends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../external_storage_configuration_gui.html#allow-users-to-mount-external-storage">Allow Users to Mount External Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../external_storage_configuration_gui.html#adding-files-to-external-storages">Adding Files to External Storages</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../external_storage_configuration.html">Configuring External Storage (Configuration File)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auth_mechanisms.html">External Storage Authentication mechanisms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../primary_storage.html">Primary Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../encryption_configuration.html">Encryption Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../files_locking_transactional.html">Transactional File Locking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../previews_configuration.html">Previews Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_versioning.html">Controlling File Versions and Aging</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_workflows/index.html">File Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_database/index.html">Database Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_mimetypes/index.html">Mimetypes Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../maintenance/index.html">Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../operations/index.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../issues/index.html">Issues and Troubleshooting</a></li>
+</ul>
+
+								</ul>
+							</div>
+					</div>
+				</div>
+        
+
+				<div class="col-md-9">
+					<div class="page-content">
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="sftp.html" title="Previous Chapter: SFTP"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; SFTP</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="webdav.html" title="Next Chapter: WebDAV"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">WebDAV &raquo;</span>
+    </a>
+  </li>
+</ul>
+						
+  <div class="section" id="smb-cifs">
+<h1>SMB/CIFS<a class="headerlink" href="#smb-cifs" title="Permalink to this headline">¶</a></h1>
+<p>Nextcloud can connect to Windows file servers or other SMB-compatible servers
+with the SMB/CIFS backend.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The SMB/CIFS backend requires <code class="docutils literal"><span class="pre">smbclient</span></code> or
+the PHP smbclient module to be installed on the Nextcloud server. The PHP
+smbclient module is preferred, but either will work. These
+should be included in any Linux distribution. (See <a class="reference external" href="https://pecl.php.net/package/smbclient">PECL smbclient</a> if your distro does not include
+them.)</p>
+</div>
+<p>You need the following information:</p>
+<ul class="simple">
+<li>Folder name for your local mountpoint.</li>
+<li>Host: The URL of the Samba server.</li>
+<li>Username: The username or domain/username used to login to the Samba
+server.</li>
+<li>Password: the password to login to the Samba server.</li>
+<li>Share: The share on the Samba server to mount.</li>
+<li>Remote Subfolder: The remote subfolder inside the Samba share to mount
+(optional, defaults to /). To assign the Nextcloud logon username
+automatically to the subfolder, use <code class="docutils literal"><span class="pre">$user</span></code> instead of a particular
+subfolder name.</li>
+<li>And finally, the Nextcloud users and groups who get access to the share.</li>
+</ul>
+<p>Optionally, you can specify a <code class="docutils literal"><span class="pre">Domain</span></code>. This is useful in
+cases where the
+SMB server requires a domain and a username, and an advanced authentication
+mechanism like session credentials is used so that the username cannot be
+modified. This is concatenated with the username, so the backend gets
+<code class="docutils literal"><span class="pre">domain\username</span></code></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">For improved reliability and performance, we recommended installing
+<code class="docutils literal"><span class="pre">libsmbclient-php</span></code>, a native PHP module for connecting to
+SMB servers.</p>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="../../_images/smb.png"><img alt="Samba external storage configuration." src="../../_images/smb.png" style="width: 683.25px; height: 123.0px;" /></a>
+</div>
+<p>See <a class="reference internal" href="../external_storage_configuration_gui.html"><em>Configuring External Storage (GUI)</em></a> for additional mount
+options and information.</p>
+<p>See <a class="reference internal" href="auth_mechanisms.html"><em>External Storage Authentication mechanisms</em></a> for more information on authentication schemes.</p>
+<div class="section" id="smb-update-notifications">
+<h2>SMB update notifications<a class="headerlink" href="#smb-update-notifications" title="Permalink to this headline">¶</a></h2>
+<p>Starting with Nextcloud 10, Nextcloud can use smb update notifications to
+listen to changes made to a configured SMB/CIFS storage and detect external
+changes made to the storage in near real-time.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Due to limitations of linux based SMB servers, this feature only works
+reliably on Windows SMB servers.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Using update notifications requires <code class="docutils literal"><span class="pre">smbclient</span></code> 4.x or newer.
+Due to limitations with the smbclient PHP module, the <code class="docutils literal"><span class="pre">smbclient</span></code> binary
+is required even when using the PHP module.</p>
+</div>
+<p>To start listening to update notifications, start the <code class="docutils literal"><span class="pre">occ</span></code> command like this:</p>
+<div class="highlight-python"><div class="highlight"><pre>occ files_external:notify &lt;mount_id&gt;
+</pre></div>
+</div>
+<p>You can find the mount id for a specific storage using <code class="docutils literal"><span class="pre">occ</span> <span class="pre">files_external:list</span></code></p>
+<p>On default this command shows no output, can you see the list of detected changes by
+passing the <code class="docutils literal"><span class="pre">-v</span></code> option to the command.</p>
+<div class="section" id="smb-authentication">
+<h3>SMB Authentication<a class="headerlink" href="#smb-authentication" title="Permalink to this headline">¶</a></h3>
+<p>In some cases (such as when using login credentials) it&#8217;s not possible to read the
+smb credentials from the storage configuration, in those cases you can provide
+the username and password using the <code class="docutils literal"><span class="pre">--username</span></code> and <code class="docutils literal"><span class="pre">--password</span></code> arguments.</p>
+</div>
+</div>
+</div>
+
+
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="sftp.html" title="Previous Chapter: SFTP"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; SFTP</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="webdav.html" title="Next Chapter: WebDAV"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">WebDAV &raquo;</span>
+    </a>
+  </li>
+</ul>
+					</div>
+				</div>
+			</div>
+  </main>  
+  </div>
+</div>
+  </body>
+</html>

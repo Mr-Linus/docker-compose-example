@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Deployment Recommendations &mdash; Nextcloud 12 Server Administration Manual 12 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/main.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Nextcloud 12 Server Administration Manual 12 documentation" href="../contents.html" />
+    <link rel="up" title="Installation" href="index.html" />
+    <link rel="next" title="Installation on Linux" href="source_installation.html" />
+    <link rel="prev" title="System Requirements" href="system_requirements.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1d2d44">
+
+  </head>
+  <body role="document">
+
+
+<div class="wrap container not-front">
+  <div class="content row">
+  <main class="main">
+    <div class="row page-content-header">
+      <div class="col-md-5 col-md-offset-7">
+      
+        <form class="headersearch" style="margin-bottom:-3px;" action="../search.html" method="get">
+        <input type="text" value="" name="q" id="q" class="form-control" /> 
+        <button  class="btn btn-default" type="submit" id="searchsubmit">Search</button>
+        </form>
+      
+      </div>
+    </div>
+    
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sidebar">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										
+<li><a href="../contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="system_requirements.html">System Requirements</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Deployment Recommendations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#general-recommendations">General Recommendations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#small-workgroups-or-departments">Small Workgroups or Departments</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mid-sized-enterprises">Mid-sized Enterprises</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#large-enterprises-and-service-providers">Large Enterprises and Service Providers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-considerations">Hardware Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-considerations">Software Considerations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#file-storage">File Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#session-storage">Session Storage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="source_installation.html">Installation on Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation_wizard.html">Installation Wizard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command_line_installation.html">Installing from Command Line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps_management_installation.html">Installing and Managing Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apps_supported.html">Supported Apps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="selinux_configuration.html">SELinux Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nginx.html">Nginx Configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_server/index.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_user/index.html">User Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_files/index.html">File Sharing and Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_workflows/index.html">File Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_database/index.html">Database Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_mimetypes/index.html">Mimetypes Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issues/index.html">Issues and Troubleshooting</a></li>
+</ul>
+
+								</ul>
+							</div>
+					</div>
+				</div>
+        
+
+				<div class="col-md-9">
+					<div class="page-content">
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="system_requirements.html" title="Previous Chapter: System Requirements"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; System Requir...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="source_installation.html" title="Next Chapter: Installation on Linux"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Installation ... &raquo;</span>
+    </a>
+  </li>
+</ul>
+						
+  <div class="section" id="deployment-recommendations">
+<h1>Deployment Recommendations<a class="headerlink" href="#deployment-recommendations" title="Permalink to this headline">¶</a></h1>
+<p>What is the best way to install and maintain Nextcloud? The answer to that is
+<em>&#8220;it depends&#8221;</em> because every Nextcloud customer has their own
+particular needs and IT infrastructure. Nextcloud and the LAMP stack are
+highly-configurable, so we will present three typical scenarios and make
+best-practice recommendations for both software and hardware.</p>
+<div class="section" id="general-recommendations">
+<h2>General Recommendations<a class="headerlink" href="#general-recommendations" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Whatever the size of your organization, always keep one thing in mind:
+the amount of data stored in Nextcloud will only grow. Plan ahead.</p>
+</div>
+<p>Consider setting up a scale-out deployment, or using Federated Cloud Sharing to
+keep individual Nextcloud instances to a manageable size.</p>
+<ul class="simple">
+<li>Operating system: Linux (Ubuntu 16.04 or Red Hat Enterprise Linux 7 is recommended).</li>
+<li>Web server: Apache 2.4.</li>
+<li>Database: MySQL/MariaDB.</li>
+<li>PHP 5.6+. PHP 5.6 is the minimum supported version. We recommend to deploy
+on PHP 7 if possible. This version is known to offer significant performance
+advantages. <code class="docutils literal"><span class="pre">mod_php</span></code> is the recommended Apache module due to
+vendor support and ease of configuration. <code class="docutils literal"><span class="pre">php-fpm</span></code> with Apache Event
+MPM (or nginx) is an alternative with potentially better scalability in
+high load and limited RAM environments. For the best results we recommend
+working with the Nextcloud GmbH enterprise support team for large deployments.</li>
+</ul>
+</div>
+<div class="section" id="small-workgroups-or-departments">
+<h2>Small Workgroups or Departments<a class="headerlink" href="#small-workgroups-or-departments" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Number of users</dt>
+<dd><p class="first last">Up to 150 users.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Storage size</dt>
+<dd><p class="first last">100 GB to 10TB.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>High availability level</dt>
+<dd><p class="first last">Zero-downtime backups via Btrfs snapshots, component failure leads to
+interruption of service. Alternate backup scheme on other filesystems:
+nightly backups with service interruption.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="recommended-system-requirements">
+<h3>Recommended System Requirements<a class="headerlink" href="#recommended-system-requirements" title="Permalink to this headline">¶</a></h3>
+<p>One machine running the application server, Web server, database server and
+local storage.</p>
+<p>Authentication via an existing LDAP or Active Directory server.</p>
+<div class="figure">
+<img alt="Network diagram for small enterprises." src="../_images/deprecs-1.png" />
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Components</dt>
+<dd><p class="first last">One server with at least 2 CPU cores, 16GB RAM, local storage as needed.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Operating system</dt>
+<dd><p class="first last">Enterprise grade Linux distribution with full support from OS vendor. Red
+Hat Enterprise Linux or Ubuntu 16.04 are recommended.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SSL Configuration</dt>
+<dd><p class="first last">The SSL termination is done in Apache. A standard SSL certificate is
+needed, installed according to the Apache documentation.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Load Balancer</dt>
+<dd><p class="first last">None.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Database</dt>
+<dd><p class="first last">MySQL, MariaDB or PostgreSQL. We currently recommend MySQL / MariaDB, as our
+customers have had good experiences when moving to a Galera cluster to
+scale the DB.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Backup</dt>
+<dd><p class="first">Install Nextcloud, Nextcloud data directory and database on Btrfs filesystem.
+Make regular snapshots at desired intervals for zero downtime backups.
+Mount DB partitions with the &#8220;nodatacow&#8221; option to prevent fragmentation.</p>
+<p>Alternatively, make nightly backups with service interruption:</p>
+<ul class="simple">
+<li>Shut down Apache.</li>
+<li>Create database dump.</li>
+<li>Push data directory to backup.</li>
+<li>Push database dump to backup.</li>
+<li>Start Apache.</li>
+</ul>
+<p class="last">Then optionally rsync to a backup storage or tape backup. (See the
+<a class="reference external" href="https://docs.nextcloud.org/server/12/admin_manual/maintenance/index.html">Maintenance</a> section of the Administration manual for tips on backups
+and restores.)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Authentication</dt>
+<dd><p class="first last">User authentication via one or several LDAP or Active Directory servers. (See
+<a class="reference external" href="https://docs.nextcloud.org/server/12/admin_manual/configuration_user/user_auth_ldap.html">User Authentication with LDAP</a> for information on configuring Nextcloud to
+use LDAP and AD.)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Session Management</dt>
+<dd><p class="first last">Local session management on the application server. PHP sessions are stored
+in a tmpfs mounted at the operating system-specific session storage
+location. You can find out where that is by running <code class="docutils literal"><span class="pre">grep</span> <span class="pre">-R</span>
+<span class="pre">'session.save_path'</span> <span class="pre">/etc/php5</span></code> and then add it to the <code class="docutils literal"><span class="pre">/etc/fstab</span></code> file,
+for example:
+<code class="docutils literal"><span class="pre">echo</span> <span class="pre">&quot;tmpfs</span> <span class="pre">/var/lib/php5/pool-www</span> <span class="pre">tmpfs</span> <span class="pre">defaults,noatime,mode=1777</span> <span class="pre">0</span> <span class="pre">0&quot;</span>
+<span class="pre">&gt;&gt;</span> <span class="pre">/etc/fstab</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Memory Caching</dt>
+<dd><p class="first last">A memcache speeds up server performance, and Nextcloud supports four
+memcaches; refer to <a class="reference external" href="https://docs.nextcloud.org/server/12/admin_manual/configuration_server/caching_configuration.html">Configuring Memory Caching</a> for information on
+selecting and configuring a memcache.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Storage</dt>
+<dd><p class="first last">Local storage.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="mid-sized-enterprises">
+<h2>Mid-sized Enterprises<a class="headerlink" href="#mid-sized-enterprises" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Number of users</dt>
+<dd><p class="first last">150 to 1,000 users.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Storage size</dt>
+<dd><p class="first last">Up to 200TB.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>High availability level</dt>
+<dd><p class="first last">Every component is fully redundant and can fail without service interruption.
+Backups without service interruption</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="id1">
+<h3>Recommended System Requirements<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>2 to 4 application servers.</p>
+<p>A cluster of two database servers.</p>
+<p>Storage on an NFS server.</p>
+<p>Authentication via an existing LDAP or Active Directory server.</p>
+<div class="figure">
+<img alt="Network diagram for mid-sized enterprise." src="../_images/deprecs-2.png" />
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Components</dt>
+<dd><ul class="first last simple">
+<li>2 to 4 application servers with 4 sockets and 32GB RAM.</li>
+<li>2 DB servers with 4 sockets and 64GB RAM.</li>
+<li>1 HAproxy load balancer with 2 sockets and 16GB RAM.</li>
+<li>NFS storage server as needed.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Operating system</dt>
+<dd><p class="first last">Enterprise grade Linux distribution with full support from OS vendor. Red
+Hat Enterprise Linux or Ubuntu 16.04 are recommended.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SSL Configuration</dt>
+<dd><p class="first last">The SSL termination is done in the HAProxy load balancer. A standard SSL
+certificate is needed, installed according to the <a class="reference external" href="http://www.haproxy.org/#docs">HAProxy documentation</a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Load Balancer</dt>
+<dd><p class="first last">HAProxy running on a dedicated server in front of the application servers.
+Sticky session needs to be used because of local session management on the
+application servers.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Database</dt>
+<dd><p class="first last">MySQL/MariaDB Galera cluster with master-slave replication. The slave is
+only used as failover in case the master is down. This could be extended
+with a load balancer infront to distribute writes to the master and reads
+to the slave as well. (see &#8220;Database load balancer&#8221; below)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Backup</dt>
+<dd><p class="first">Minimum daily backup without downtime. All MySQL/MariaDB statements should
+be replicated to a backup MySQL/MariaDB slave instance.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Create a snapshot on the NFS storage server.</li>
+<li>At the same time stop the MySQL replication.</li>
+<li>Create a MySQL dump of the backup slave.</li>
+<li>Push the NFS snapshot to the backup.</li>
+<li>Push the MySQL dump to the backup.</li>
+<li>Delete the NFS snapshot.</li>
+<li>Restart MySQL replication.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Authentication</dt>
+<dd><p class="first last">User authentication via one or several LDAP or Active Directory servers.
+(See <a class="reference external" href="https://docs.nextcloud.org/server/12/admin_manual/configuration_user/user_auth_ldap.html">User Authentication with LDAP</a>  for information on configuring
+Nextcloud to use LDAP and AD.)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>LDAP</dt>
+<dd><p class="first last">Read-only slaves should be deployed on every application server for
+optimal scalability</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Session Management</dt>
+<dd><p class="first last">Session management on the application server. PHP sessions are stored
+in a tmpfs mounted at the operating system-specific session storage
+location. You can find out where that is by running <code class="docutils literal"><span class="pre">grep</span> <span class="pre">-R</span>
+<span class="pre">'session.save_path'</span> <span class="pre">/etc/php5</span></code> and then add it to the <code class="docutils literal"><span class="pre">/etc/fstab</span></code> file,
+for example:
+<code class="docutils literal"><span class="pre">echo</span> <span class="pre">&quot;tmpfs</span> <span class="pre">/var/lib/php5/pool-www</span> <span class="pre">tmpfs</span> <span class="pre">defaults,noatime,mode=1777</span> <span class="pre">0</span> <span class="pre">0&quot;</span>
+<span class="pre">&gt;&gt;</span> <span class="pre">/etc/fstab</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Memory Caching</dt>
+<dd><p class="first last">A memcache speeds up server performance, and Nextcloud supports four
+memcaches; refer to <a class="reference external" href="https://docs.nextcloud.org/server/12/admin_manual/configuration_server/caching_configuration.html">Configuring Memory Caching</a> for information on
+selecting and configuring a memcache.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Storage</dt>
+<dd><p class="first last">Use an off-the-shelf NFS solution, such as IBM Elastic Storage or RedHat
+Ceph.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="large-enterprises-and-service-providers">
+<h2>Large Enterprises and Service Providers<a class="headerlink" href="#large-enterprises-and-service-providers" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Number of users</dt>
+<dd><p class="first last">5,000 to &gt;100,000 users.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Storage size</dt>
+<dd><p class="first last">Up to 1 petabyte.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>High availabily level</dt>
+<dd><p class="first last">Every component is fully redundant and can fail without service interruption.
+Backups without service interruption</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="id2">
+<h3>Recommended System Requirements<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<p>4 to 20 application/Web servers.</p>
+<p>A cluster of two or more database servers which are behind a load balancer to
+send all writes to the master and reads to the slaves. (see &#8220;Database load balancer&#8221;
+below)</p>
+<p>Storage is an NFS server, or an object store that is S3 compatible.</p>
+<p>Cloud federation for a distributed setup over several data centers.</p>
+<p>Authentication via an existing LDAP or Active Directory server, or SAML.</p>
+<div class="figure">
+<img alt="Network diagram for large enterprise." src="../_images/deprecs-3.png" />
+</div>
+<ul>
+<li><dl class="first docutils">
+<dt>Components</dt>
+<dd><ul class="first last simple">
+<li>4 to 20 application servers with 4 sockets and 64GB  RAM.</li>
+<li>4 DB servers with 4 sockets and 128GB RAM plus a DB load balancer
+(see &#8220;Database load balancer&#8221; below)</li>
+<li>2 load balancer - either HAProxy with keepalived (heartbeat) and a shared
+virutal IP address as a software solution or a hardware load balancer. For
+the HAProxy we recommend at least 2 sockets and 16GB RAM each.</li>
+<li>NFS storage server as needed.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Operating system</dt>
+<dd><p class="first last">Enterprise grade Linux distribution with full support from OS vendor. Red
+Hat Enterprise Linux or Ubuntu 16.04 are recommended.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>SSL Configuration</dt>
+<dd><p class="first last">The SSL termination is done in the load balancer. A standard SSL certificate
+is needed, installed according to the load balancer documentation.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Load Balancer</dt>
+<dd><p class="first last">A redundant load-balancer with heartbeat, for example <a class="reference external" href="http://www.haproxy.org/">HAProxy</a>.
+This runs two load balancers in front of the application servers.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Database</dt>
+<dd><p class="first last">MySQL/MariaDB Galera Cluster with master - slave replication (master &amp; 3 slaves).
+The load balancer infront distributes writes to the master and reads to the
+slaves. (see &#8220;Database load balancer&#8221; below)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Backup</dt>
+<dd><p class="first">Minimum daily backup without downtime. All MySQL/MariaDB statements should
+be replicated to a backup MySQL/MariaDB slave instance.</p>
+<blockquote class="last">
+<div><ul class="simple">
+<li>Create a snapshot on the NFS storage server.</li>
+<li>At the same time stop the MySQL replication.</li>
+<li>Create a MySQL dump of the backup slave.</li>
+<li>Push the NFS snapshot to the backup.</li>
+<li>Push the MySQL dump to the backup.</li>
+<li>Delete the NFS snapshot.</li>
+<li>Restart MySQL replication.</li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Authentication</dt>
+<dd><p class="first last">User authentication via one or several LDAP or Active Directory
+servers, or SAML/Shibboleth. (See <a class="reference external" href="https://docs.nextcloud.org/server/12/admin_manual/configuration_user/user_auth_ldap.html">User Authentication with LDAP</a>.)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>LDAP</dt>
+<dd><p class="first last">Read-only slaves should be deployed on every application server for
+optimal scalability.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Session Management</dt>
+<dd><p class="first last">Redis should be used for the session management storage.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Caching</dt>
+<dd><p class="first last">Redis for distributed in-memory caching (see <a class="reference external" href="https://docs.nextcloud.org/server/12/admin_manual/configuration_server/caching_configuration.html">Configuring Memory
+Caching</a>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Storage</dt>
+<dd><p class="first last">An off-the-shelf NFS solution should be used. Examples are IBM Elastic
+Storage or RedHAT Ceph. Optionally, an S3 compatible object store can also
+be used.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="hardware-considerations">
+<h2>Hardware Considerations<a class="headerlink" href="#hardware-considerations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Solid-state drives (SSDs) for I/O.</li>
+<li>Separate hard disks for storage and database, SSDs for databases.</li>
+<li>Multiple network interfaces to distribute server synchronisation and backend
+traffic across multiple subnets.</li>
+</ul>
+<div class="section" id="single-machine-scale-up-deployment">
+<h3>Single Machine / Scale-Up Deployment<a class="headerlink" href="#single-machine-scale-up-deployment" title="Permalink to this headline">¶</a></h3>
+<p>The single-machine deployment is widely used in the community.</p>
+<p>Pros:</p>
+<ul class="simple">
+<li>Easy setup: no session storage daemon, use tmpfs and memory caching to
+enhance performance, local storage.</li>
+<li>No network latency to consider.</li>
+<li>To scale buy a bigger CPU, more memory, larger hard drive, or additional hard
+drives.</li>
+</ul>
+<p>Cons:</p>
+<ul class="simple">
+<li>Fewer high availability options.</li>
+<li>The amount of data in Nextcloud tends to continually grow. Eventually a
+single machine will not scale; I/O performance decreases and becomes a
+bottleneck with multiple up- and downloads, even with solid-state drives.</li>
+</ul>
+</div>
+<div class="section" id="scale-out-deployment">
+<h3>Scale-Out Deployment<a class="headerlink" href="#scale-out-deployment" title="Permalink to this headline">¶</a></h3>
+<p>Provider setup:</p>
+<ul class="simple">
+<li>DNS round robin to HAProxy servers (2-n, SSL offloading, cache static
+resources)</li>
+<li>Least load to Apache servers (2-n)</li>
+<li>Memcached/Redis for shared session storage (2-n)</li>
+<li>Database cluster with single Master, multiple slaves and proxy to split
+requests accordingly (2-n) - <a class="reference external" href="https://mariadb.com/products/mariadb-maxscale">MaxScale</a> is a possible proxy
+solutions to load balance the writes to the master and reads to the slaves
+(see &#8220;Database load balancer&#8221; below)</li>
+<li>GPFS or Ceph via phprados (2-n, 3 to be safe, Ceph 10+ nodes to see speed
+benefits under load)</li>
+</ul>
+<p>Pros:</p>
+<ul class="simple">
+<li>Components can be scaled as needed.</li>
+<li>High availability.</li>
+<li>Test migrations easier.</li>
+</ul>
+<p>Cons:</p>
+<ul class="simple">
+<li>More complicated to setup.</li>
+<li>Network becomes the bottleneck (10GB Ethernet recommended).</li>
+<li>Currently DB filecache table will grow rapidly, making migrations painful in
+case the table is altered.</li>
+</ul>
+</div>
+<div class="section" id="what-about-nginx-php-fpm">
+<h3>What About Nginx / PHP-FPM?<a class="headerlink" href="#what-about-nginx-php-fpm" title="Permalink to this headline">¶</a></h3>
+<p>Could be used instead of HAproxy as the load balancer.
+But on uploads stores the whole file on disk before handing it over to PHP-FPM.</p>
+</div>
+<div class="section" id="a-single-master-db-is-single-point-of-failure-does-not-scale">
+<h3>A Single Master DB is Single Point of Failure, Does Not Scale<a class="headerlink" href="#a-single-master-db-is-single-point-of-failure-does-not-scale" title="Permalink to this headline">¶</a></h3>
+<p>When master fails another slave can become master.</p>
+<p>A multi-master setup with Galera cluster is not supported, because we require
+<code class="docutils literal"><span class="pre">READ-COMMITTED</span></code> as transaction isolation level. <a class="reference external" href="http://galeracluster.com/documentation-webpages/isolationlevels.html#understanding-isolation-levels">Galera doesn&#8217;t support this
+with a master-master replication</a> which will lead to deadlocks during uploads
+of multiple files into one directory for example.</p>
+</div>
+<div class="section" id="database-load-balancer">
+<h3>Database load balancer<a class="headerlink" href="#database-load-balancer" title="Permalink to this headline">¶</a></h3>
+<p>When Galera cluster is used as DB cluster solution, we recommend to use
+<a class="reference external" href="https://mariadb.com/products/mariadb-maxscale">MaxScale</a> as load balancer infront of the cluster to distribute writes to
+the master node and reads to the slaves.</p>
+</div>
+</div>
+<div class="section" id="software-considerations">
+<h2>Software Considerations<a class="headerlink" href="#software-considerations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="operating-system">
+<h3>Operating System<a class="headerlink" href="#operating-system" title="Permalink to this headline">¶</a></h3>
+<p>We are dependent on distributions that offer an easy way to install the various
+components in up-to-date versions. We recommend Red Hat Enterprise Linux 7 or
+Ubuntu 16.04 - for both commercial support can be purchased. Debian
+and Ubuntu are free of cost, and include newer software packages. CentOS is the
+community-supported free-of-cost Red Hat Enterprise Linux clone.</p>
+</div>
+<div class="section" id="web-server">
+<h3>Web server<a class="headerlink" href="#web-server" title="Permalink to this headline">¶</a></h3>
+<p>Taking Apache and Nginx as the contenders, Apache with mod_php is currently the
+best option, as Nginx does not support all features necessary for enterprise
+deployments. Mod_php is recommended instead of PHP_FPM, because in scale-out
+deployments separate PHP pools are simply not necessary.</p>
+</div>
+<div class="section" id="relational-database">
+<h3>Relational Database<a class="headerlink" href="#relational-database" title="Permalink to this headline">¶</a></h3>
+<p>More often than not the customer already has an opinion on what database to
+use. In general, the recommendation is to use what their database administrator
+is most familiar with. Taking into account what we are seeing at customer
+deployments, we recommend MySQL/MariaDB in a master - slave deployment with a
+MySQL proxy in front of them to send updates to master, and selects to the
+slave(s). (see &#8220;Database load balancer&#8221; above)</p>
+<p>The second best option is PostgreSQL (alter table does not lock table, which
+makes migration less painful) although we have yet to find a customer who uses a
+master-slave setup.</p>
+<p>What about the other DBMS?</p>
+<ul class="simple">
+<li>Sqlite is adequate for simple testing, and for low-load single-user
+deployments. It is not adequate for production systems.</li>
+<li>Microsoft SQL Server is not a supported option.</li>
+<li>For Oracle DB support please <a class="reference external" href="https://nextcloud.com/contact/">contact the Nextcloud team</a> to get more
+information on this.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="file-storage">
+<h2>File Storage<a class="headerlink" href="#file-storage" title="Permalink to this headline">¶</a></h2>
+<p>While many customers are starting with NFS, sooner or later that requires scale-out storage. Currently the options are GPFS or GlusterFS, or an object store protocol like S3 or Swift. S3 also allows access to Ceph Storage.</p>
+</div>
+<div class="section" id="session-storage">
+<h2>Session Storage<a class="headerlink" href="#session-storage" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Redis: provides persistence, nice graphical inspection tools available,
+supports Nextcloud high-level file locking.</li>
+<li>If Shibboleth is a requirement you must use Memcached, and it can also be
+used to scale-out shibd session storage (see <a class="reference external" href="https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPStorageService#NativeSPStorageService-MemcacheStorageService">Memcache StorageService</a>).</li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="http://www.severalnines.com/blog/become-mysql-dba-blog-series-database-high-availability">Database High Availability</a></p>
+<p><a class="reference external" href="http://blog.bitnami.com/2014/06/performance-enhacements-for-apache-and.html">Performance enhancements for Apache and PHP</a></p>
+<p><a class="reference external" href="https://www.digitalocean.com/community/tutorials/how-to-set-up-a-redis-server-as-a-session-handler-for-php-on-ubuntu-14-04">How to Set Up a Redis Server as a Session Handler for PHP on Ubuntu 14.04</a></p>
+</div>
+</div>
+
+
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="system_requirements.html" title="Previous Chapter: System Requirements"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; System Requir...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="source_installation.html" title="Next Chapter: Installation on Linux"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Installation ... &raquo;</span>
+    </a>
+  </li>
+</ul>
+					</div>
+				</div>
+			</div>
+  </main>  
+  </div>
+</div>
+  </body>
+</html>

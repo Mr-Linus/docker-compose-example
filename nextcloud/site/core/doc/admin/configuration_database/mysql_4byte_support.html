@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Enabling MySQL 4-byte support &mdash; Nextcloud 12 Server Administration Manual 12 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/main.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Nextcloud 12 Server Administration Manual 12 documentation" href="../contents.html" />
+    <link rel="up" title="Database Configuration" href="index.html" />
+    <link rel="next" title="Mimetypes Management" href="../configuration_mimetypes/index.html" />
+    <link rel="prev" title="Database Configuration" href="linux_database_configuration.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1d2d44">
+
+  </head>
+  <body role="document">
+
+
+<div class="wrap container not-front">
+  <div class="content row">
+  <main class="main">
+    <div class="row page-content-header">
+      <div class="col-md-5 col-md-offset-7">
+      
+        <form class="headersearch" style="margin-bottom:-3px;" action="../search.html" method="get">
+        <input type="text" value="" name="q" id="q" class="form-control" /> 
+        <button  class="btn btn-default" type="submit" id="searchsubmit">Search</button>
+        </form>
+      
+      </div>
+    </div>
+    
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sidebar">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										
+<li><a href="../contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_server/index.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_user/index.html">User Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_files/index.html">File Sharing and Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_workflows/index.html">File Workflows</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Database Configuration</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="db_conversion.html">Converting Database Type</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_database_configuration.html">Database Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Enabling MySQL 4-byte support</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#mariadb-support">MariaDB support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_mimetypes/index.html">Mimetypes Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../maintenance/index.html">Maintenance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issues/index.html">Issues and Troubleshooting</a></li>
+</ul>
+
+								</ul>
+							</div>
+					</div>
+				</div>
+        
+
+				<div class="col-md-9">
+					<div class="page-content">
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="linux_database_configuration.html" title="Previous Chapter: Database Configuration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Database Conf...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="../configuration_mimetypes/index.html" title="Next Chapter: Mimetypes Management"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Mimetypes Man... &raquo;</span>
+    </a>
+  </li>
+</ul>
+						
+  <div class="section" id="enabling-mysql-4-byte-support">
+<h1>Enabling MySQL 4-byte support<a class="headerlink" href="#enabling-mysql-4-byte-support" title="Permalink to this headline">¶</a></h1>
+<p>In order to use Emojis (textbased smilies) on your Nextcloud server with a MySQL database, the
+installation needs to be tweaked a bit.</p>
+<ol class="arabic">
+<li><p class="first">Update your Nextcloud server to Nextcloud 11 or later.</p>
+</li>
+<li><p class="first">Make sure the following InnoDB settings are set on your MySQL server:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="p">[</span><span class="n">mysqld</span><span class="p">]</span>
+<span class="n">innodb_large_prefix</span><span class="o">=</span><span class="n">true</span>
+<span class="n">innodb_file_format</span><span class="o">=</span><span class="n">barracuda</span>
+<span class="n">innodb_file_per_table</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+</li>
+<li><p class="first">Restart the MySQL server in case you changed the configuration in step 2.</p>
+</li>
+<li><p class="first">Change your databases character set and collation:</p>
+<div class="highlight-python"><div class="highlight"><pre>ALTER DATABASE nextcloud CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Set the <code class="docutils literal"><span class="pre">mysql.utf8mb4</span></code> config to true in your config.php:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo -u www-data occ config:system:set mysql.utf8mb4 --type boolean --value=&quot;true&quot;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Convert all existing tables to the new collation by running the repair step:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ sudo -u www-data occ maintenance:repair
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Now you should be able to use Emojis in your file names, calendar events, comments and many more.</p>
+<div class="section" id="mariadb-support">
+<h2>MariaDB support<a class="headerlink" href="#mariadb-support" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is even more <strong>experimental</strong>.</p>
+</div>
+<ol class="arabic">
+<li><p class="first">Follow MySQL steps 1, 2 and 3</p>
+</li>
+<li><p class="first">Figure out whether the file formate was changed to Barracuda:</p>
+<div class="highlight-python"><div class="highlight"><pre>MariaDB&gt; SELECT NAME, SPACE, FILE_FORMAT FROM INFORMATION_SCHEMA.INNODB_SYS_TABLES WHERE NAME like &quot;nextcloud%&quot;;
+</pre></div>
+</div>
+</li>
+</ol>
+<p>If the file format is &#8220;Barracuda&#8221; for every single table, nothing is left to do. Continue with the MySQL instructions. While testing, all tables&#8217; file format was &#8220;Antelope&#8221;.</p>
+<ol class="arabic" start="3">
+<li><p class="first">The tables needs to be migrated to &#8220;Barracuda&#8221; manually, one by one. SQL commands can be created easily, however:</p>
+<div class="highlight-python"><div class="highlight"><pre>MariaDB&gt; USE INFORMATION_SCHEMA;
+MariaDB&gt; SELECT CONCAT(&quot;ALTER TABLE `&quot;, TABLE_SCHEMA,&quot;`.`&quot;, TABLE_NAME, &quot;` ROW_FORMAT=DYNAMIC;&quot;) AS MySQLCMD FROM TABLES WHERE TABLE_SCHEMA = &quot;nextcloud&quot;;
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This will return an SQL command for each table in the nextcloud database. The rows can be quickly copied into a text editor, the &#8220;|&#8221;s replaced and the SQL commands copied back to the MariaDB shell. If no error appeared (in doubt check step 2) all is done and nothing is left to do here. It can be proceded with the MySQL steps.</p>
+<ol class="arabic" start="4">
+<li><p class="first">It is possible, however, that some tables cannot be altered. The operations fails with: &#8220;ERROR 1478 (HY000): Table storage engine &#8216;InnoDB&#8217; does not support the create option &#8216;ROW_FORMAT&#8217;&#8221;. In that case the failing tables have a SPACE value of 0 in step 2. It basically means that the table does not have an index file of its own, which is required for the Barracuda format. This can be solved with a slightly different SQL command:</p>
+<div class="highlight-python"><div class="highlight"><pre>MariaDB&gt; ALTER TABLE `nextcloud`.`oc_tablename` ROW_FORMAT=DYNAMIC, ALGORITHM=COPY;
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Replace oc_tablename with the failing table. If there are too many (did not happen here), SQL commands can be generated in a batch (task for the reader).</p>
+<p>Now everything should be fine and the MySQL instructions should be proceeded.</p>
+</div>
+</div>
+
+
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="linux_database_configuration.html" title="Previous Chapter: Database Configuration"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Database Conf...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="../configuration_mimetypes/index.html" title="Next Chapter: Mimetypes Management"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Mimetypes Man... &raquo;</span>
+    </a>
+  </li>
+</ul>
+					</div>
+				</div>
+			</div>
+  </main>  
+  </div>
+</div>
+  </body>
+</html>

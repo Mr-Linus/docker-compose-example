@@ -1,0 +1,25 @@
+version: '3'
+services:
+  mysql:
+    build: ./mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: GeekCloud
+    volumes:
+      - ./db:/var/lib/mysql
+    networks:
+      - lamp
+  apache:
+    build: ./php
+    ports:
+      - '80:80'
+    volumes:
+      - ./html:/var/www/html
+      - ./apache2.conf:/etc/apache2/apache2.conf
+      - ./vhost.conf:/etc/apache2/sites-available/000-default.conf
+    networks:
+      - lamp
+    depends_on:
+      - mysql
+networks:
+    lamp:  
+

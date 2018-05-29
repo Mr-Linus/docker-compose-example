@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Migrating to a Different Server &mdash; Nextcloud 12 Server Administration Manual 12 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/main.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/styles.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '12',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.1.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Nextcloud 12 Server Administration Manual 12 documentation" href="../contents.html" />
+    <link rel="up" title="Maintenance" href="index.html" />
+    <link rel="next" title="Operations" href="../operations/index.html" />
+    <link rel="prev" title="Upgrade via Packages" href="package_upgrade.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#1d2d44">
+
+  </head>
+  <body role="document">
+
+
+<div class="wrap container not-front">
+  <div class="content row">
+  <main class="main">
+    <div class="row page-content-header">
+      <div class="col-md-5 col-md-offset-7">
+      
+        <form class="headersearch" style="margin-bottom:-3px;" action="../search.html" method="get">
+        <input type="text" value="" name="q" id="q" class="form-control" /> 
+        <button  class="btn btn-default" type="submit" id="searchsubmit">Search</button>
+        </form>
+      
+      </div>
+    </div>
+    
+			<div class="row">
+				<div class="col-md-3">
+					<div class="sidebar">
+							<div class="menu-support-container">
+								<ul id="menu-support" class="menu">
+									<ul>
+										
+<li><a href="../contents.html">Table of Contents</a></li>
+									</ul>
+                  <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_server/index.html">Server Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_user/index.html">User Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_files/index.html">File Sharing and Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_workflows/index.html">File Workflows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_database/index.html">Database Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_mimetypes/index.html">Mimetypes Management</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Maintenance</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="backup.html">Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restore.html">Restoring Backup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">How to Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update.html">Upgrade via build-in Updater</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manual_upgrade.html">Upgrade Manually</a></li>
+<li class="toctree-l2"><a class="reference internal" href="package_upgrade.html">Upgrade via Packages</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Migrating to a Different Server</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operations/index.html">Operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../issues/index.html">Issues and Troubleshooting</a></li>
+</ul>
+
+								</ul>
+							</div>
+					</div>
+				</div>
+        
+
+				<div class="col-md-9">
+					<div class="page-content">
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="package_upgrade.html" title="Previous Chapter: Upgrade via Packages"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Upgrade via P...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="../operations/index.html" title="Next Chapter: Operations"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Operations &raquo;</span>
+    </a>
+  </li>
+</ul>
+						
+  <div class="section" id="migrating-to-a-different-server">
+<h1>Migrating to a Different Server<a class="headerlink" href="#migrating-to-a-different-server" title="Permalink to this headline">¶</a></h1>
+<p>If the need arises Nextcloud can be migrated to a different server. A typical
+use case would be a hardware change or a migration from the virtual Appliance
+to a physical server. All migrations have to be performed with Nextcloud
+offline and no accesses being made. Online migration is supported by
+Nextcloud only when implementing industry standard clustering and HA solutions
+before Nextcloud is installed for the first time.</p>
+<p>To start let us be specific about the use case. A configured Nextcloud
+instance runs reliably on one machine. For some reason (e.g. more powerful
+machine is available but a move to a clustered environment not yet needed)
+the instance needs to be moved to a new machine. Depending on the size of
+the Nextcloud instance the migration might take several hours. As a
+prerequisite it is assumed that the end users reach the Nextcloud instance
+via a virtual hostname (a <code class="docutils literal"><span class="pre">CNAME</span></code> record in DNS) which can be pointed at
+the new location. It is also assumed that the authentication method
+(e.g. LDAP) remains the same after the migration.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p>At NO TIME any changes to the <strong>ORIGINAL</strong> system are required
+<strong>EXCEPT</strong> putting Nextcloud into maintenance mode.</p>
+<p class="last">This ensures, should anything unforseen happen you can go
+back to your existing installation and provide your users
+with a running Nextcloud while debugging the problem.</p>
+</div>
+<ol class="arabic simple">
+<li>Set up the new machine with the desired OS, install and configure the
+Web server as well as PHP for Nextcloud (e.g. permissions or file upload size
+limits) and make sure the PHP version matches Nextcloud supported
+configuration and all relevant PHP extensions are installed. Also set up
+the database and make sure it is an Nextcloud supported configuration. If
+your original machine was installed recently just copying that base
+configuration is a safe best practice.</li>
+<li>On the original machine then stop Nextcloud. First activate the
+maintenance mode. After waiting for 6-7 minutes for all sync clients to
+register the server as in maintenance mode stop the application and/or
+Web server that serves Nextcloud.</li>
+<li>Create a dump from the database and copy it to the new machine. There
+import it in the database (See <a class="reference internal" href="backup.html"><em>Backup</em></a> and <a class="reference internal" href="restore.html"><em>Restoring Backup</em></a>).</li>
+<li>Copy all files from your Nextcloud instance, the Nextcloud program files, the
+data files, the log files and the configuration files, to the new
+machine (See <a class="reference internal" href="backup.html"><em>Backup</em></a> and <a class="reference internal" href="restore.html"><em>Restoring Backup</em></a>). The data files should keep
+their original timestamp (can be done by using <code class="docutils literal"><span class="pre">rsync</span></code> with <code class="docutils literal"><span class="pre">-t</span></code> option)
+otherwise the clients will re-download all the files after the migration.
+Depending on the original installation method and the OS the files are
+located in different locations. On the new system make sure to pick the
+appropriate locations. If you change any paths, make sure to adopt the paths
+in the Nextcloud config.php file. Note: This step might take several hours,
+depending on your installation.</li>
+<li>While still having Nextcloud in maintenance mode (confirm!) and <strong>BEFORE</strong>
+changing the <code class="docutils literal"><span class="pre">CNAME</span></code> record in the DNS start up the database, Web server /
+application server on the new machine and point your web browser to the
+migrated Nextcloud instance. Confirm that you see the maintenance mode
+notice, that a logfile entry is written by both the Web server and
+Nextcloud and that no error messages occur. Then take Nextcloud out of
+maintenance mode and repeat. Log in as admin and confirm normal function
+of Nextcloud.</li>
+<li>Change the <code class="docutils literal"><span class="pre">CNAME</span></code> entry in the DNS to point your users to the new
+location.</li>
+</ol>
+</div>
+
+
+            
+<ul class="prevnext-title list-unstyled list-inline">
+  <li class="prev">
+    <a href="package_upgrade.html" title="Previous Chapter: Upgrade via Packages"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm">&laquo; Upgrade via P...</span>
+    </a>
+  </li>
+  <li class="next">
+    <a href="../operations/index.html" title="Next Chapter: Operations"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm">Operations &raquo;</span>
+    </a>
+  </li>
+</ul>
+					</div>
+				</div>
+			</div>
+  </main>  
+  </div>
+</div>
+  </body>
+</html>

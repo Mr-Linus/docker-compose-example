@@ -1,0 +1,29 @@
+version: '3'
+services:
+    web:
+        image: nextcloud 
+        ports:
+            - 80:80
+        volumes:
+            - "./site:/var/www/html"
+        networks:
+            - cloud
+        depends_on:
+            - mysql
+        restart: always
+    mysql:
+        image: mariadb
+        volumes:
+            - ./mysql:/var/lib/mysql
+        environment:
+            TZ : 'Asia/Shanghai'
+            MYSQL_ROOT_PASSWORD: 'Gekc0uld'
+            MYSQL_USER: 'nextcloud'
+            MYSQL_PASSWORD: 'nextcloud'
+            MYSQL_DATABASE: 'nextcloud'
+        command: ['mysqld', '--character-set-server=utf8']
+        networks:
+            - cloud
+        restart: always
+networks:
+    cloud: 

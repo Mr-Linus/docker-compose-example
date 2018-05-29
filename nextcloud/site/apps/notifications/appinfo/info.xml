@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<info>
+	<id>notifications</id>
+	<name>Notifications</name>
+	<description><![CDATA[This app provides a backend and frontend for the notification API available in Nextcloud.
+		The API is used by other apps to notify users in the web UI and sync clients about various things. Some examples are:
+
+📬 Federated file sharing: You received a new remote share
+
+📑 Comments: Another user mentioned you in a comment on a file
+
+🚢 Update notification: Available update for an app or nextcloud itself
+
+📣 Announcement center: An announcement was posted by an admin]]></description>
+
+	<licence>AGPL</licence>
+	<author>Joas Schilling</author>
+	<version>2.0.0</version>
+
+	<types>
+		<logging/>
+	</types>
+
+	<default_enable/>
+
+	<website>https://github.com/nextcloud/notifications</website>
+	<bugs>https://github.com/nextcloud/notifications/issues</bugs>
+	<repository type="git">https://github.com/nextcloud/notifications.git</repository>
+
+	<dependencies>
+		<nextcloud min-version="12" max-version="12" />
+	</dependencies>
+</info>
