@@ -5,11 +5,11 @@
 
 ### 登陆界面
 
-![home](https://github.com/Mr-Linus/Nextcloud-Docker/blob/master/home.png)
+![home](./home.png)
 
 ### 导航
 
-![info](https://github.com/Mr-Linus/Nextcloud-Docker/blob/master/info.png)
+![info](./info.png)
 
 ## 使用说明
 
