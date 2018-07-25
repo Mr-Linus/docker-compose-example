@@ -1,7 +1,0 @@
-{ "translations": {
-    "Notifications" : "Notifiche",
-    "No notifications" : "Nessuna notifica",
-    "Dismiss" : "Annulla",
-    "in {path}" : "in {path}"
-},"pluralForm" :"nplurals=2; plural=(n != 1);"
-}
