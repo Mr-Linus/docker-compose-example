@@ -31,7 +31,7 @@ services:
       DB_SERVER_HOST: zabbix-mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: GeekCloud
-      ZBX_SERVER_HOST: zabbix-server
+      ZBX_SERVER_HOST: zabbix-master
       ZBX_SERVER_PORT: 10051
       PHP_TZ: Asia/Shanghai
     ports:

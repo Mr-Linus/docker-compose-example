@@ -6,8 +6,10 @@ services:
     deploy:
       replicas: 1
     environment:
-      ZBX_HOSTNAME: 'hostname'
-      ZBX_SERVER_HOST: 'serverip'
+      ZBX_HOSTNAME: 'zabbix-mac-agent'
+      ZBX_SERVER_HOST: 'zabbix-master'
+    ports:
+      - '10050:10050'
     networks:
       - zabbix
 networks:
