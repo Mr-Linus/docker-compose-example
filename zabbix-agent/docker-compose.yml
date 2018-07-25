@@ -1,0 +1,15 @@
+version: '3'
+services:
+  zabbix:
+    image:  zabbix/zabbix-agent:alpine-3.0-latest
+    container_name: zabbix-agent
+    deploy:
+      replicas: 1
+    environment:
+      ZBX_HOSTNAME: 'hostname'
+      ZBX_SERVER_HOST: 'serverip'
+    networks:
+      - zabbix
+networks:
+    zabbix:  
+
